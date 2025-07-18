@@ -21,8 +21,3 @@ mod tt {
 }
 
 collectd_plugin!(tt::MyPlugin);
-
-#[test]
-fn can_generate_blank_plugin() {
-    assert!(true);
-}

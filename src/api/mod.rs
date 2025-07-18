@@ -705,10 +705,10 @@ mod tests {
     #[test]
     fn test_submit() {
         let values = vec![Value::Gauge(15.0), Value::Gauge(10.0), Value::Gauge(12.0)];
-        let result = ValueListBuilder::new("my-plugin", "load")
+        ValueListBuilder::new("my-plugin", "load")
             .values(&values)
-            .submit();
-        assert_eq!(result.unwrap(), ());
+            .submit()
+            .unwrap();
     }
 
     #[test]

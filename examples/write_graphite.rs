@@ -72,7 +72,7 @@ impl PluginManager for GraphiteManager {
 
         // Deserialize the collectd configuration into our configuration struct
         let config: GraphiteConfig =
-            collectd_plugin::de::from_collectd(config.unwrap_or_else(Default::default))?;
+            collectd_plugin::de::from_collectd(config.unwrap_or_default())?;
 
         let config: Vec<(String, Box<dyn Plugin>)> = config
             .nodes

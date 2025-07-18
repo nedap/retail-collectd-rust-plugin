@@ -39,8 +39,7 @@ impl PluginManager for LoadManager {
         config: Option<&[ConfigItem<'_>]>,
     ) -> Result<PluginRegistration, Box<dyn error::Error>> {
         // Deserialize the collectd configuration into our configuration struct
-        let config: LoadConfig =
-            collectd_plugin::de::from_collectd(config.unwrap_or_else(Default::default))?;
+        let config: LoadConfig = collectd_plugin::de::from_collectd(config.unwrap_or_default())?;
 
         // Grab the configuration. By default, this plugin reports absolute load values. For
         // demonstration purposes, there are two different plugin types (relative and absolute),

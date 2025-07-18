@@ -180,11 +180,11 @@ mod tests {
     #[test]
     fn test_plugin_capabilities() {
         let capabilities = PluginCapabilities::READ | PluginCapabilities::WRITE;
-        assert_eq!(capabilities.has_read(), true);
-        assert_eq!(capabilities.has_write(), true);
+        assert!(capabilities.has_read());
+        assert!(capabilities.has_write());
 
         let capabilities = PluginCapabilities::READ;
-        assert_eq!(capabilities.has_read(), true);
-        assert_eq!(capabilities.has_write(), false);
+        assert!(capabilities.has_read());
+        assert!(!capabilities.has_write());
     }
 }

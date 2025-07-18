@@ -27,15 +27,15 @@ impl fmt::Display for ConfigError {
 }
 
 impl error::Error for ConfigError {
-    fn description(&self) -> &str {
-        "error interpreting configuration values"
-    }
-
     fn source(&self) -> Option<&(dyn error::Error + 'static)> {
         match *self {
             ConfigError::StringDecode(ref e) => Some(e),
             ConfigError::UnknownType(_) => None,
         }
+    }
+
+    fn description(&self) -> &str {
+        "error interpreting configuration values"
     }
 }
 
@@ -230,7 +230,7 @@ pub enum FfiError<'a> {
     Utf8(&'static str, Utf8Error),
 }
 
-impl<'a> fmt::Display for FfiError<'a> {
+impl fmt::Display for FfiError<'_> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {
             FfiError::Collectd(_) => write!(f, "unexpected collectd behavior"),
@@ -257,7 +257,7 @@ impl<'a> fmt::Display for FfiError<'a> {
     }
 }
 
-impl<'a> error::Error for FfiError<'a> {
+impl error::Error for FfiError<'_> {
     fn description(&self) -> &str {
         "collectd plugin error"
     }

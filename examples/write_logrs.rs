@@ -46,7 +46,7 @@ impl PluginManager for LogWritePlugin {
         collectd_log(LogLevel::Info, &line);
         info!("rust logging configuration: {:?}", config);
         let plugin: LogWritePlugin =
-            collectd_plugin::de::from_collectd(config.unwrap_or_else(Default::default))?;
+            collectd_plugin::de::from_collectd(config.unwrap_or_default())?;
         Ok(PluginRegistration::Single(Box::new(plugin)))
     }
 }
